@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DemoLibWorld.DataLayer;
 using DemoLibWorld.Entity;
 
-namespace DemoLibWorld.Pages.Books
+namespace DemoLibWorld.Pages.BookCategory
 {
     public class DeleteModel : PageModel
     {
@@ -20,44 +20,40 @@ namespace DemoLibWorld.Pages.Books
         }
 
         [BindProperty]
-      public BookEntity BookEntity { get; set; } = default!;
+      public DemoLibWorld.Entity.BookCategory BookCategory { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.BoookCollectoins == null)
+            if (id == null || _context.BookCategories == null)
             {
                 return NotFound();
             }
 
-            var bookentity = await _context.BoookCollectoins.FirstOrDefaultAsync(m => m.BookId == id);
+            var bookcategory = await _context.BookCategories.FirstOrDefaultAsync(m => m.BookCategoryId == id);
 
-            bookentity.BookCategories = await _context.BookCategories.FirstOrDefaultAsync(x =>
-            x.BookCategoryId == bookentity.BookCategoryId
-            );
-
-            if (bookentity == null)
+            if (bookcategory == null)
             {
                 return NotFound();
             }
             else 
             {
-                BookEntity = bookentity;
+                BookCategory = bookcategory;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.BoookCollectoins == null)
+            if (id == null || _context.BookCategories == null)
             {
                 return NotFound();
             }
-            var bookentity = await _context.BoookCollectoins.FindAsync(id);
+            var bookcategory = await _context.BookCategories.FindAsync(id);
 
-            if (bookentity != null)
+            if (bookcategory != null)
             {
-                BookEntity = bookentity;
-                _context.BoookCollectoins.Remove(BookEntity);
+                BookCategory = bookcategory;
+                _context.BookCategories.Remove(BookCategory);
                 await _context.SaveChangesAsync();
             }
 

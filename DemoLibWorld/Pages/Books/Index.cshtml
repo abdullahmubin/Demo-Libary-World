@@ -20,6 +20,9 @@
                 @Html.DisplayNameFor(model => model.BookEntity[0].Authorname)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.BookEntity[0].BookCategories.BookCategoryName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.BookEntity[0].Releasedate)
             </th>
             <th>
@@ -37,6 +40,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Authorname)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookCategories.BookCategoryName)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Releasedate)
             </td>
@@ -44,9 +50,9 @@
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.BookId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.BookId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.BookId"><img src="~/img/edit.png" width="22px" height="22px"/></a> |
+                <a asp-page="./Details" asp-route-id="@item.BookId"><img src="~/img/file.png" width="22px" height="22px" /></a> |
+                <a asp-page="./Delete" asp-route-id="@item.BookId"><img src="~/img/delete.png" width="22px" height="22px" /></a>
             </td>
         </tr>
 }

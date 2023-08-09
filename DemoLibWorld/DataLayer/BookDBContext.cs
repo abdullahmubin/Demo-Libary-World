@@ -10,5 +10,6 @@ namespace DemoLibWorld.DataLayer
         }
 
         public DbSet<BookEntity> BoookCollectoins { get; set; }
+        public DbSet<BookCategory> BookCategories { get; set; }
     }
 }

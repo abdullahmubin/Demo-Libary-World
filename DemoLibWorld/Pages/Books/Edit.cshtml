@@ -25,6 +25,15 @@
                 <span asp-validation-for="BookEntity.Authorname" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="BookEntity.BookCategoryId"></label>
+                <select asp-for="BookEntity.BookCategoryId" asp-items="Model.GetBookCategories"
+                        class="form-control">
+                    <option selected>-- Select book category---</option>
+                </select>
+
+                <span asp-validation-for="BookEntity.Authorname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="BookEntity.Releasedate" class="control-label"></label>
                 <input asp-for="BookEntity.Releasedate" class="form-control" />
                 <span asp-validation-for="BookEntity.Releasedate" class="text-danger"></span>
@@ -36,13 +45,14 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-danger mx-1">Back</a>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    
 </div>
 
 @section Scripts {

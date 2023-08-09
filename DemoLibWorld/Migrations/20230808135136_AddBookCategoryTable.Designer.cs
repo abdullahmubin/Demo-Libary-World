@@ -4,6 +4,7 @@ using DemoLibWorld.DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoLibWorld.Migrations
 {
     [DbContext(typeof(BookDBContext))]
-    partial class BookDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230808135136_AddBookCategoryTable")]
+    partial class AddBookCategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +53,6 @@ namespace DemoLibWorld.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("BookCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Rating")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -68,18 +67,7 @@ namespace DemoLibWorld.Migrations
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("BookCategoryId");
-
                     b.ToTable("BoookCollectoins");
-                });
-
-            modelBuilder.Entity("DemoLibWorld.Entity.BookEntity", b =>
-                {
-                    b.HasOne("DemoLibWorld.Entity.BookCategory", "BookCategories")
-                        .WithMany()
-                        .HasForeignKey("BookCategoryId");
-
-                    b.Navigation("BookCategories");
                 });
 #pragma warning restore 612, 618
         }

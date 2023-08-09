@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DemoLibWorld.DataLayer;
 using DemoLibWorld.Entity;
 
-namespace DemoLibWorld.Pages.Books
+namespace DemoLibWorld.Pages.BookCategory
 {
     public class IndexModel : PageModel
     {
@@ -19,19 +19,13 @@ namespace DemoLibWorld.Pages.Books
             _context = context;
         }
 
-        public IList<BookEntity> BookEntity { get;set; } = default!;
+        public IList<DemoLibWorld.Entity.BookCategory> BookCategory { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.BoookCollectoins != null)
+            if (_context.BookCategories != null)
             {
-                BookEntity = await _context.BoookCollectoins.ToListAsync();
-
-                foreach (var item in BookEntity)
-                {
-                    item.BookCategories = await _context.BookCategories.FirstOrDefaultAsync(x
-                        => x.BookCategoryId == item.BookCategoryId);
-                }
+                BookCategory = await _context.BookCategories.ToListAsync();
             }
         }
     }

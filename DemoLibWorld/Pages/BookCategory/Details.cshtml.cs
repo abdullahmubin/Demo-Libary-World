@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DemoLibWorld.DataLayer;
 using DemoLibWorld.Entity;
 
-namespace DemoLibWorld.Pages.Books
+namespace DemoLibWorld.Pages.BookCategory
 {
     public class DetailsModel : PageModel
     {
@@ -19,28 +19,23 @@ namespace DemoLibWorld.Pages.Books
             _context = context;
         }
 
-      public BookEntity BookEntity { get; set; } = default!; 
+      public DemoLibWorld.Entity.BookCategory BookCategory { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.BoookCollectoins == null)
+            if (id == null || _context.BookCategories == null)
             {
                 return NotFound();
             }
 
-            var bookentity = await _context.BoookCollectoins.FirstOrDefaultAsync(m => m.BookId == id);
-
-            bookentity.BookCategories = await _context.BookCategories.FirstOrDefaultAsync(x =>
-            x.BookCategoryId == bookentity.BookCategoryId
-            );
-
-            if (bookentity == null)
+            var bookcategory = await _context.BookCategories.FirstOrDefaultAsync(m => m.BookCategoryId == id);
+            if (bookcategory == null)
             {
                 return NotFound();
             }
             else 
             {
-                BookEntity = bookentity;
+                BookCategory = bookcategory;
             }
             return Page();
         }

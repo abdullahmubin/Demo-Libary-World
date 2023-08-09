@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoLibWorld.Entity
 {
@@ -24,6 +25,13 @@ namespace DemoLibWorld.Entity
         [Required(ErrorMessage ="Rating is required.")]
         [Range(1,5, ErrorMessage ="Rating range between 1 to 5 only")]
         public string Rating { get; set; }
+
+        [Display(Name ="Category")]
+        public int? BookCategoryId { get; set; }
+
+        [ForeignKey("BookCategoryId")]
+        public virtual BookCategory? BookCategories { get; set; }
+
     }
 
     public class DataValidation: ValidationAttribute
